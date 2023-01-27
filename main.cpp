@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <cctype>
 
-#include <deque>
+#include <queue>
 
 #include <curses.h>
 #include <ncurses.h>
@@ -32,19 +32,19 @@ int main(int argc, char **argv) {
         noecho();
         nodelay(stdscr, TRUE);
 
-        std::deque<Point> snake;
+        std::queue<Point> snake;
         
-        snake.emplace_back(randint(0, width - 1), randint(0, height - 1));
-        snake.emplace_back(snake[0].first + 1, snake[0].second);
+        snake.emplace(randint(0, width - 1), randint(0, height - 1));
+        snake.emplace(snake.front().first + 1, snake.front().second);
 
-        if (snake[1].first == width) {
-            snake[0].first = width - 2;
-            snake[1].first = width - 1;
+        if (snake.back().first == width) {
+            snake.front().first = width - 2;
+            snake.back().first = width - 1;
         }
 
-        for (auto [ x, y ] : snake) {
-            mvaddch(y, x, SNAKE_CHAR);
-        }
+        
+        mvaddch(snake.front().second, snake.front().first, SNAKE_CHAR);
+        mvaddch(snake.back().second, snake.back().first, SNAKE_CHAR);
 
         Point food(randint(0, width - 1), randint(0, height - 1));
         mvaddch(food.second, food.first, FOOD_CHAR);
@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
         Point direction(1, 0);
 
         while (true) {
-            snake.emplace_back(
+            snake.emplace(
                 (snake.back().first + direction.first + width) % width,
                 (snake.back().second + direction.second + height) % height
             );
@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
                 mvaddch(food.second, food.first, FOOD_CHAR);
             } else {
                 mvaddch(snake.front().second, snake.front().first, AREA_CHAR);
-                snake.pop_front();
+                snake.pop();
             }
 
             int key = tolower(getch());

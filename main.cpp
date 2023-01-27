@@ -13,6 +13,10 @@
 
 using Point = std::pair<int, int>;
 
+const char SNAKE_CHAR = '*';
+const char FOOD_CHAR = '@';
+const char AREA_CHAR = ' ';
+
 const int MAX_WIDTH = 1000;
 const int MAX_HEIGHT = 1000;
 const int SLEEP_TIME_MS = 250;
@@ -57,11 +61,11 @@ int main(int argc, char **argv) {
         }
 
         for (auto [ x, y ] : snake) {
-            mvaddch(y, x, '*');
+            mvaddch(y, x, SNAKE_CHAR);
         }
 
         Point food(randint(0, width - 1), randint(0, height - 1));
-        mvaddch(food.second, food.first, '@');
+        mvaddch(food.second, food.first, FOOD_CHAR);
 
         refresh();
 
@@ -75,9 +79,9 @@ int main(int argc, char **argv) {
 
             if (snake.back() == food) {
                 food = { randint(0, width - 1), randint(0, height - 1) };
-                mvaddch(food.second, food.first, '@');
+                mvaddch(food.second, food.first, FOOD_CHAR);
             } else {
-                mvaddch(snake.front().second, snake.front().first, ' ');
+                mvaddch(snake.front().second, snake.front().first, AREA_CHAR);
                 snake.pop_front();
             }
 
@@ -95,7 +99,7 @@ int main(int argc, char **argv) {
                 }
             }
 
-            mvaddch(snake.back().second, snake.back().first, '*');
+            mvaddch(snake.back().second, snake.back().first, SNAKE_CHAR);
 
             refresh();
             usleep(SLEEP_TIME_MS * 1000);

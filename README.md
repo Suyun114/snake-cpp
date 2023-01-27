@@ -7,15 +7,17 @@ A simple game like [*Snake*](https://en.wikipedia.org/wiki/Snake_(video_game_gen
 - Linux
   - I tested it on Arch Linux on Windows Subsystem for Linux 2.
   - *Windows may be also OK but I have not tested.*
-- C++ compiler with C++ 17 support
-  - I used GCC 12.2.1.
+- C++ compiler with C++ 11 support
 - GNU ncurses
+- CMake (>= 3.0)
 
 ## Build
 
 ```shell
 mkdir build
-g++ main.cpp -o build/snake -lncurses -std=c++17
+cd build
+cmake ..
+make
 ```
 
 ## Usage

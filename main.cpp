@@ -1,33 +1,15 @@
+#include "main.h"
+#include "utils.h"
+
 #include <cstdio>
 #include <cstdlib>
 #include <cctype>
 
-#include <random>
-#include <string>
-#include <utility>
 #include <deque>
 
 #include <curses.h>
 #include <ncurses.h>
 #include <unistd.h>
-
-using Point = std::pair<int, int>;
-
-const char SNAKE_CHAR = '*';
-const char FOOD_CHAR = '@';
-const char AREA_CHAR = ' ';
-
-const int MAX_WIDTH = 1000;
-const int MAX_HEIGHT = 1000;
-const int SLEEP_TIME_MS = 250;
-
-template<typename RangeType>
-auto randint(RangeType l, RangeType r) {
-    static std::random_device rd;
-    static std::mt19937 rng(rd());
-
-    return std::uniform_int_distribution<RangeType>(l, r)(rng);
-}
 
 int main(int argc, char **argv) {
     try {

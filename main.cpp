@@ -82,7 +82,6 @@ int main(int argc, char **argv) {
             }
 
             int key = tolower(getch());
-            refresh();
 
             if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
                 if (direction.first) {
@@ -97,7 +96,6 @@ int main(int argc, char **argv) {
             }
 
             mvaddch(snake.back().second, snake.back().first, '*');
-            refresh();
 
             refresh();
             usleep(SLEEP_TIME_MS * 1000);

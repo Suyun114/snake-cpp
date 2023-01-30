@@ -38,6 +38,10 @@ int main(int argc, char **argv) {
         while (true) {
             int key = tolower(area.input());
 
+            if (key == 'q') {
+                break;
+            }
+
             if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
                 if (direction.first) {
                     if (key == 'w' || key == 's') {

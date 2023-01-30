@@ -60,17 +60,16 @@ int main(int argc, char **argv) {
             );
 
             if (snake.back() == food) {
+                area.take(food);
                 food = { randint(0, area.width - 1), randint(0, area.height - 1) };
                 area.put(food, FOOD_CHAR);
             } else {
                 area.take(snake.front());
 
-                if (snake.front() != food) {
-                    while (area.get(snake.front()) != ' ') {
-                        area.take(snake.front());
-                    }
+                if (snake.front() != food && area.get(snake.front()) == '@') {
+                    area.take(snake.front());
                 }
-
+                
                 snake.pop();
             }
 

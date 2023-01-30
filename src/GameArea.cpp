@@ -1,5 +1,4 @@
 #include "GameArea.h"
-#include "utils.h"
 
 #include <algorithm>
 

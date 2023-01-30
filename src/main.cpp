@@ -36,6 +36,20 @@ int main(int argc, char **argv) {
         GameArea::Point direction(1, 0);
 
         while (true) {
+            int key = tolower(area.input());
+
+            if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
+                if (direction.first) {
+                    if (key == 'w' || key == 's') {
+                        direction = (key == 'w' ? GameArea::Point(0, -1) : GameArea::Point(0, 1));
+                    }
+                } else {
+                    if (key == 'a' || key == 'd') {
+                        direction = (key == 'a' ? GameArea::Point(-1, 0) : GameArea::Point(1, 0));
+                    }
+                }
+            }
+
             snake.emplace(
                 (snake.back().first + direction.first + area.width) % area.width,
                 (snake.back().second + direction.second + area.height) % area.height
@@ -54,20 +68,6 @@ int main(int argc, char **argv) {
                 }
 
                 snake.pop();
-            }
-
-            int key = tolower(area.input());
-
-            if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
-                if (direction.first) {
-                    if (key == 'w' || key == 's') {
-                        direction = (key == 'w' ? GameArea::Point(0, -1) : GameArea::Point(0, 1));
-                    }
-                } else {
-                    if (key == 'a' || key == 'd') {
-                        direction = (key == 'a' ? GameArea::Point(-1, 0) : GameArea::Point(1, 0));
-                    }
-                }
             }
 
             area.put(snake.back(), SNAKE_CHAR);

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(snake LANGUAGES CXX)
 
-set(SOURCES src/main.cpp src/utils.cpp)
+set(SOURCES src/main.cpp src/utils.cpp src/GameArea.cpp)
 
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})

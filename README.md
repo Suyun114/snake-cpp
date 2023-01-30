@@ -27,4 +27,6 @@ make
 ./snake 20 25
 ```
 
-You can replace `20` and `25` to the width and height of the game area you like. But it is not allowed to make them negative or greater than 1000.
+Replace `20` and `25` to the width and height of the game area you like. But it is not allowed to make them negative or greater than 1000.
+
+Use <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd> to control the direction. And press <kbd>Q</kbd> to quit.
